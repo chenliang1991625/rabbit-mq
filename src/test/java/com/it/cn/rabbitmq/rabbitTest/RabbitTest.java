@@ -23,36 +23,19 @@ public class RabbitTest {
         rabbitTemplate.convertAndSend("firstExchange", "first.qu", "first.qu主题模式");
     }
 
-    //    输出结果：itcast接收到消息：主题模式
+
     @Test
     public void testSendTopic2() {
         rabbitTemplate.convertAndSend("firstExchange", "qeq.queues", "qeq.queues主题模 式");
     }
-//    输出结果：itheima接收到消息：主题模式
 
     @Test
     public void testSendTopic3() {
         rabbitTemplate.convertAndSend("firstExchange", "second.queues", "second.queues主题模式");
     }
 
-    //    创建消息监听类，用于监听itheima的消息
-    @Component
-    @RabbitListener(queues = "firstQueues",containerFactory="rabbitListenerContainerFactory")
-    public class Customer1 {
-        @RabbitHandler
-        public void showMessage(String message) {
-            System.out.println("firstQueues接收到消息：" + message);
-        }
-    }
 
-    @Component
-    @RabbitListener(queues = "secondQueue",containerFactory="rabbitListenerContainerFactory")
-    public class Customer2 {
-        @RabbitHandler
-        public void showMessage(String message) {
-            System.out.println("secondQueue接收到消息：" + message);
-        }
-    }
+
 
     @Component
     @RabbitListener(queues = "myQueues",containerFactory="rabbitListenerContainerFactory")
